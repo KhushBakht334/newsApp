@@ -26,28 +26,21 @@ export class News extends Component {
 ]
 constructor(){
 super();
-this.state={
+this.state = {
   articles: this.articles
 }
+
 }
   render() {
     return (
       <div className='container my-3'>
         <h2>MonkeyNews</h2>
         <div className='row'>
-          <div className='col-md-3'>
-          <NewsItem title="myTitle" description="mydesc" urlimage="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1099495_800x450.jpg" urlLink="toDo" />
-          </div>
-          <div className='col-md-3'>
-          <NewsItem title="myTitle" description="mydesc"  />
-          </div>
-          <div className='col-md-3'>
-          <NewsItem title="myTitle" description="mydesc" />
-          </div>
+        {this.state.articles.map((element) => {
+          return <div className='col-md-5' key={element.url}>
+            <NewsItem title={element.title.slice(0,20)} description={element.description.slice(0,45)} imageUrl={element.urlToImage} newsUrl={element.url} />
+            </div>})}
         </div>
-        
-        
-     
       </div>
      
     )
