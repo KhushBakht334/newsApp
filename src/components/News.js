@@ -12,42 +12,44 @@ this.state = {
 }
 }
 async componentDidMount(){
-  let {pageSize}=this.props;
-  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=1&pageSize=${pageSize}`;
+  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=1&pageSize=20`;
+  this.setState({loading:true});
   let data=await fetch(url);
   let parseData=await data.json()
   console.log(parseData)
   this.setState({articles: parseData.articles,
-    totalResults: parseData.totalResults})
+    totalResults: parseData.totalResults,
+  loading:false})
 }
 handleNextClick= async()=>{
-  let {pageSize}=this.props;
-  if( this.state.page +1 > Math.ceil(this.state.totalResults/pageSize))
-  {}else{
-  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page +1}&pageSize=${pageSize}`;
+  if(!this.state.page +1 > Math.ceil(this.state.totalResults/20))
+  {
+  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page +1}&pageSize=20`;
+  this.setState({loading:true})
   let data=await fetch(url);
   let parseData=await data.json()
   console.log(parseData)
   this.setState({articles: parseData.articles,
     page: this.state.page +1,
+    loading:false
   })
   }
 }
 handlePrevClick= async()=>{
-  let {pageSize}=this.props;
-  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page - 1}&pageSize=${pageSize}`;
+  let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page - 1}&pageSize=20`;
+  this.setState({loading:true})
   let data=await fetch(url);
   let parseData=await data.json()
   console.log(parseData)
   this.setState({articles: parseData.articles,
-    page: this.state.page - 1})
+    page: this.state.page - 1,
+  loading:false})
 }
   render() {
-    let {pageSize}=this.props;
     return (
       <div className='container my-3'>
         <h1 className='text-center'>MonkeyNews- Top Headlines</h1>
-        <Spinner/>
+       {this.state.loading && <Spinner/>}
         <div className='row'>
         {this.state.articles.map((element) => {
           return <div className='col-md-4' key={element.url}>
@@ -57,7 +59,7 @@ handlePrevClick= async()=>{
         <div className='container d-flex justify-content-between'>
         <button disabled={this.state.page <=1 }type="button" className="btn btn-outline-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
 
-        <button disabled={this.state.page +1 > Math.ceil(this.state.totalResults/pageSize)} type="button" className="btn btn-outline-dark" onClick={this.handleNextClick}>  &rarr; Next</button>
+        <button  type="button" className="btn btn-outline-dark" onClick={this.handleNextClick}>  &rarr; Next</button>
         </div>
       </div>
      
