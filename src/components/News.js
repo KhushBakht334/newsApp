@@ -62,7 +62,7 @@ handlePrevClick= async()=>{
         <div className='row'>
         {this.state.articles.map((element) => {
           return <div className='col-md-4' key={element.url}>
-            <NewsItem title={element.title?element.title.slice(0,20):""} description={element.description?element.description.slice(0,45):""} imageUrl={element.urlToImage?element.urlToImage:"https://ichef.bbci.co.uk/news/1024/branded_news/C705/production/_129394905_front.jpg"} newsUrl={element.url} />
+            <NewsItem title={element.title?element.title.slice(0,20):""} description={element.description?element.description.slice(0,45):""} imageUrl={element.urlToImage?element.urlToImage:"https://ichef.bbci.co.uk/news/1024/branded_news/C705/production/_129394905_front.jpg"} newsUrl={element.url} author={element.author} date={element.publishedAt}/>
             </div>})}
         </div>
         <div className='container d-flex justify-content-between'>
