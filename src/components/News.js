@@ -12,8 +12,8 @@ export class News extends Component {
     country: PropTypes.string,
     category: PropTypes.string
   }
-constructor(){
-super();
+constructor(props){
+super(props);
 this.state = {
   articles: [],
   loading:false,
@@ -38,7 +38,7 @@ handleNextClick= async()=>{
   let data=await fetch(url);
   let parseData=await data.json()
   console.log(parseData)
-  this.setState({articles: parseData.articles,
+  await this.setState({articles: parseData.articles,
     page: this.state.page +1,
     loading:false
   })
@@ -50,14 +50,14 @@ handlePrevClick= async()=>{
   let data=await fetch(url);
   let parseData=await data.json()
   console.log(parseData)
-  this.setState({articles: parseData.articles,
+  await this.setState({articles: parseData.articles,
     page: this.state.page - 1,
   loading:false})
 }
   render() {
     return (
       <div className='container my-3'>
-        <h1 className='text-center'>MonkeyNews- Top Headlines</h1>
+        <h1 className='text-center'>MonkeyNews- Top {this.props.category} Headlines</h1>
        {this.state.loading && <Spinner/>}
         <div className='row'>
         {this.state.articles.map((element) => {
