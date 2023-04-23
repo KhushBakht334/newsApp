@@ -24,7 +24,7 @@ this.state = {
 }
 async componentDidMount(){
   this.props.setProgress(10)
-  let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=1&pageSize=20`;
+  let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=1&pageSize=20`;
   this.setState({loading:true});
   let data=await fetch(url);
   this.props.setProgress(30)
@@ -64,7 +64,7 @@ fetchMoreData = async () => {
     this.setState({
       page: this.state.page + 1
     });
-  const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page +1}&pageSize=20`;
+  const url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page +1}&pageSize=20`;
   let data=await fetch(url);
   let parseData=await data.json()
    this.setState({articles: this.state.articles.concat(parseData.articles),

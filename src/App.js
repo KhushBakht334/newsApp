@@ -9,6 +9,7 @@ import {
 import LoadingBar from 'react-top-loading-bar'
 
 export default class App extends Component {
+  apiKey=process.env.REACT_APP_NEWS_API
   state={
     progress:0
   }
@@ -28,10 +29,10 @@ export default class App extends Component {
         progress={this.state.progress}
       />
       <Routes>
-        <Route path='/general' element={<News setProgress={this.setProgress}  key="general" pageSize={5} country="in" category="general"/>}></Route>
-        <Route path='/entertainment' element={<News setProgress={this.setProgress}  key ="entertainment" pageSize={5} country="in" category="entertainment"/>}></Route>
-        <Route path='/business' element={<News setProgress={this.setProgress}  key ="business" pageSize={5} country="in" category="business"/>}></Route>
-        <Route path='/health' element={<News setProgress={this.setProgress}  key ="health" pageSize={5} country="in" category="health"/>}></Route>
+        <Route path='/general' element={<News setProgress={this.setProgress} apiKey={this.apiKey}  key="general" pageSize={5} country="in" category="general"/>}></Route>
+        <Route path='/entertainment' element={<News setProgress={this.setProgress} apiKey={this.apiKey}  key ="entertainment" pageSize={5} country="in" category="entertainment"/>}></Route>
+        <Route path='/business' element={<News setProgress={this.setProgress} apiKey={this.apiKey}  key ="business" pageSize={5} country="in" category="business"/>}></Route>
+        <Route path='/health' element={<News setProgress={this.setProgress} apiKey={this.apiKey}  key ="health" pageSize={5} country="in" category="health"/>}></Route>
       </Routes>
       </Router>
       
