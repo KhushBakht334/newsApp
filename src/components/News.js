@@ -74,7 +74,8 @@ fetchMoreData = async () => {
   render() {
     return (
       <>
-        <h1 className='text-center'>MonkeyNews- Top {this.props.category} Headlines</h1>
+      //add heading
+        <h1 className='text-center' style={{marginTop: '90px'}}>MonkeyNews- Top {this.props.category} Headlines</h1>
        {this.state.loading && <Spinner/>}
         <InfiniteScroll
           dataLength={this.state.articles.length}
