@@ -36,20 +36,7 @@ async componentDidMount(){
 })
 this.props.setProgress(100)
 }
-// handleNextClick= async()=>{
-//   if(!this.state.page +1 > Math.ceil(this.state.totalResults/20))
-//   {
-//   let url=`https://newsapi.org/v2/top-headlines?county=${this.props.country}&category=${this.props.category}&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page +1}&pageSize=20`;
-//   this.setState({loading:true})
-//   let data=await fetch(url);
-//   let parseData=await data.json()
-//   console.log(parseData)
-//    this.setState({articles: parseData.articles,
-//     page: this.state.page +1,
-//     loading:false
-//   })
-//   }
-// }
+
 // handlePrevClick= async()=>{
 //   let url=`https://newsapi.org/v2/top-headlines?county=${this.props.country}&category=${this.props.category}&apiKey=00d639c2e9cf4c8cb043d42cb9c32c30&page=${this.state.page - 1}&pageSize=20`;
 //   this.setState({loading:true})
